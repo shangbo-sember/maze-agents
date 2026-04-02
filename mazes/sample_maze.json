@@ -1,0 +1,41 @@
+{
+  "name": "Sample Maze",
+  "description": "示例迷宫 - 中等难度",
+  "start": [0, 0],
+  "end": [9, 9],
+  "grid": {
+    "(3, 0)": "wall",
+    "(3, 1)": "wall",
+    "(3, 2)": "wall",
+    "(3, 3)": "wall",
+    "(3, 4)": "wall",
+    
+    "(5, 2)": "wall",
+    "(5, 3)": "wall",
+    "(5, 4)": "wall",
+    "(5, 5)": "wall",
+    "(5, 6)": "wall",
+    
+    "(7, 0)": "wall",
+    "(7, 1)": "wall",
+    "(7, 2)": "wall",
+    "(7, 5)": "wall",
+    "(7, 6)": "wall",
+    "(7, 7)": "wall",
+    "(7, 8)": "wall",
+    
+    "(1, 6)": "wall",
+    "(2, 6)": "wall",
+    "(4, 6)": "wall",
+    "(4, 7)": "wall",
+    "(4, 8)": "wall",
+    
+    "(9, 3)": "wall",
+    "(9, 4)": "wall",
+    "(9, 5)": "wall",
+    "(8, 3)": "wall",
+    "(6, 3)": "wall"
+  },
+  "difficulty": "medium",
+  "expected_path_length": 20
+}
