@@ -96,8 +96,16 @@ class MazeSolver:
             maze_accessor=self.memory,
         )
         
+        # 让新 Explorer 知道已存在的其他 Explorer（启用协作）
+        for existing in self.explorers:
+            explorer.known_explorers.add(existing.agent_id)
+            # 同步已知的 Explorer 列表
+            existing.known_explorers.add(f"explorer_{explorer_id}")
+        
         mailbox_system.register_agent(f"explorer_{explorer_id}")
         self.explorers.append(explorer)
+        
+        print(f"[系统] 创建 {explorer.agent_id}，已知 Explorer: {explorer.known_explorers}")
         
         return explorer
     
@@ -236,6 +244,18 @@ class MazeSolver:
             stats = mailbox_system.get_stats()
             print(f"  消息总数：{stats['total_messages']}")
             print(f"  Explorer 数量：{len(self.explorers)}")
+            
+            # 打印 Explorer 协作统计
+            print(f"\n🤝 Explorer 协作统计:")
+            for explorer in self.explorers:
+                if hasattr(explorer, 'get_collaboration_stats'):
+                    stats = explorer.get_collaboration_stats()
+                    if stats['help_requests_sent'] > 0 or stats['help_requests_received'] > 0 or stats['shared_maps_count'] > 0:
+                        print(f"    {explorer.agent_id}:")
+                        print(f"      认识的 Explorer: {stats['known_explorers']}")
+                        print(f"      发送求助：{stats['help_requests_sent']} 次")
+                        print(f"      收到求助：{stats['help_requests_received']} 次")
+                        print(f"      共享地图：{stats['shared_maps_count']} 个")
             
         elif self.coordinator.maze_state.is_unsolvable:
             print(f"\n❌ 迷宫无解")

@@ -41,6 +41,7 @@ class MessageType(Enum):
     # Explorer 间通信
     HELP_REQUEST = "help_request"
     HELP_RESPONSE = "help_response"
+    MAP_SHARE = "map_share"  # 分享地图/发现
 
 
 @dataclass
